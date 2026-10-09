@@ -160,6 +160,6 @@ These are **reference designs and educational examples**, not claims that a comp
 
 ### `~/connect $ ping`
 
-[LinkedIn](https://www.linkedin.com/in/mila-joselyn-cruz/) · [Writing](https://medium.com/@shesalldata)
+[LinkedIn](https://www.linkedin.com/in/milajoselyn)
 
 <sub>✳ Built for curious engineers, careful operators, and people who think AI agents should be observable, testable, and accountable.</sub>
