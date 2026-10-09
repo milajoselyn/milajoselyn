@@ -6,7 +6,6 @@
 
 `[ SYSTEM ONLINE ]` · `[ HUMAN-IN-THE-LOOP ]` · `[ ALWAYS EVALUATING ]`
 
-*myspace-era internet energy, production-grade engineering discipline.*
 
 </div>
 
