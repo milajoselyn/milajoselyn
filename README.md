@@ -2,7 +2,7 @@
 
 # ✳ MILA.exe
 
-**AI Agent Engineering · Persistent Memory · Autonomous Systems**
+**AI Agent Engineering · Memory Architectures · Multi-Agent Marketing Intelligence · Autonomous Systems**
 
 `[ SYSTEM ONLINE ]` · `[ HUMAN-IN-THE-LOOP ]` · `[ ALWAYS EVALUATING ]`
 
@@ -16,7 +16,7 @@
 
 I design and build **stateful AI agents** that use tools, retain relevant context, coordinate workflows, and improve their behavior through **evaluation and governed feedback loops**.
 
-My work sits at the intersection of **LLM orchestration, conversational agents, workflow automation, data systems, and agent reliability**. I care about the part after the demo: tracing failures, preserving memory safely, measuring outcomes, and shipping changes without breaking production.
+My work sits at the intersection of **LLM orchestration, conversational agents, AI-driven SEO, public relations intelligence, content systems, advertising automation, business analytics, workflow engineering, and agent reliability**. I care about the part after the demo: tracing failures, preserving memory safely, measuring outcomes, and shipping changes without breaking production.
 
 > **An agent that remembers is not necessarily an agent that learns.** Durable memory, retrieval, feedback, policy updates, and model training are separate mechanisms. Good systems make those boundaries explicit.
 
@@ -30,6 +30,77 @@ My work sits at the intersection of **LLM orchestration, conversational agents, 
 | ⚙️ **Workflow orchestration** | Event ingestion, idempotency, queues, retries, dead-letter handling, scheduled jobs |
 | 🛡️ **Agent governance** | Scoped permissions, human approval, PII minimization, audit trails, rollback |
 | 📈 **Observability** | Traces, latency, token cost, tool failures, hallucination flags, outcome metrics |
+
+### `~/agent-universe $ ls --all`
+
+I explore **specialized agents that collaborate across business functions**, rather than forcing one general-purpose model to do everything. The patterns below describe engineering domains and reference architectures—not claims that every agent is publicly deployed.
+
+| Agent archetype | Technical responsibilities | Evaluation / control plane |
+| :--- | :--- | :--- |
+| 🔎 **SEO Intelligence Agent** | Site crawling, robots/sitemap parsing, technical audits, structured-data checks, keyword clustering, SERP signals, content recommendations, proposed CMS edits | Crawl coverage, canonical correctness, evidence snapshots, approval before publishing |
+| 📣 **Public Relations Agent** | Media monitoring, entity resolution, journalist/outlet research, sentiment and narrative clustering, briefing drafts, outreach planning | Source attribution, factual verification, editorial approval, contact privacy |
+| ✍️ **Content Strategy Agent** | Editorial calendars, search-intent mapping, content briefs, brand-voice retrieval, multilingual draft generation, internal-link suggestions | Brand consistency, citation coverage, originality review, human publishing gate |
+| 🎯 **Paid Media Agent** | Campaign telemetry, search-term analysis, audience segmentation, anomaly detection, bid/budget recommendations, creative testing hypotheses | Attribution caveats, spend limits, change approvals, experiment tracking |
+| 📊 **Business Intelligence Agent** | SQL/warehouse retrieval, metric definitions, KPI anomaly detection, cross-channel attribution, executive summaries | Query validation, metric lineage, freshness SLAs, numerical consistency |
+| 🎙️ **Conversational Operations Agent** | Voice and email intake, identity-aware context, persistent interaction memory, tool-based workflows, escalation and follow-up | Verification, policy compliance, handoff reliability, hallucination and outcome monitoring |
+| 🧠 **Memory & Evaluation Agent** | Episodic/semantic memory extraction, contradiction detection, retrieval scoring, trace evaluation, candidate SOP improvements | Tenant isolation, consent/TTL, eval benchmarks, reviewer-approved promotion |
+
+#### `~/multi-agent $ cat coordination.mmd`
+
+```mermaid
+flowchart TB
+  S[Signals: websites, media, ads, CRM, conversations] --> I[Event ingestion + normalization]
+  I --> O[Orchestrator / task router]
+  O --> SEO[SEO agent]
+  O --> PR[PR agent]
+  O --> C[Content agent]
+  O --> PPC[Paid media agent]
+  O --> BI[BI agent]
+  SEO --> M[(Scoped shared memory + provenance)]
+  PR --> M
+  C --> M
+  PPC --> M
+  BI --> M
+  M --> E[Evaluation + policy checks]
+  E --> H{Human approval needed?}
+  H -->|Yes| A[Review / approve / reject]
+  H -->|No| R[Authorized read-only output]
+  A --> T[Versioned tool execution]
+  T --> L[Audit trail + feedback]
+  R --> L
+  L --> I
+```
+
+**Architectural boundary:** shared intelligence does not mean shared unrestricted access. Each agent gets its own tool scopes, memory namespace, identity context, and approval policy. A content recommendation is not permission to publish; an ad recommendation is not permission to spend.
+
+#### `~/engineering-notes $ cat agent-contract.ts`
+
+```ts
+type AgentDomain = "seo" | "pr" | "content" | "paid_media" | "bi";
+type Risk = "read_only" | "draft" | "external_write";
+
+interface AgentTask {
+  id: string;                 // idempotency key
+  tenantId: string;           // enforced at every data boundary
+  domain: AgentDomain;
+  objective: string;
+  sourceRefs: string[];       // provenance, not raw secrets
+  requestedAction: Risk;
+  policyVersion: string;
+}
+
+interface AgentResult {
+  taskId: string;
+  status: "proposed" | "approved" | "rejected" | "completed";
+  evidenceRefs: string[];
+  confidence: number;        // calibrated against evaluation data
+  toolTraceId: string;
+  requiresHumanApproval: boolean;
+}
+
+// Example contract only: the executor must separately authenticate,
+// authorize, validate, deduplicate, and audit every side effect.
+```
 
 ### `~/architecture $ cat learning-loop.txt`
 
