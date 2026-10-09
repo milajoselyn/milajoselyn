@@ -102,6 +102,30 @@ interface AgentResult {
 // authorize, validate, deduplicate, and audit every side effect.
 ```
 
+### `~/analytics $ ./STAT.exe`
+
+> **✳ STAT.exe** — Statistical Intelligence & Data Science Agent
+
+A reproducible **statistical-analysis agent blueprint** for dataset profiling, descriptive statistics, correlation, regression, hypothesis-test planning, data-quality checks, and uncertainty-aware interpretation. The reference implementation computes descriptive summaries, Pearson correlation, and simple OLS; advanced inference is documented as a planned extension.
+
+```mermaid
+flowchart LR
+  A[Dataset + question] --> B[Validate + profile]
+  B --> C[Choose method + check assumptions]
+  C --> D[Deterministic statistical tools]
+  D --> E[Diagnostics + interpretation]
+  E --> F[Versioned results + review]
+```
+
+```bash
+python examples/stat_agent.py
+python -m unittest discover -s tests -v
+```
+
+**Explore:** [Architecture & method selection](docs/statistical-analysis-agent.md) · [Python analysis engine](examples/stat_agent.py) · [Regression tests](tests/test_stat_agent.py)
+
+**Operating principle:** `measure → validate → compute → verify → explain`. The LLM plans and narrates; deterministic code performs the math. Correlation is not causation.
+
 ### `~/architecture $ cat learning-loop.txt`
 
 ```mermaid
